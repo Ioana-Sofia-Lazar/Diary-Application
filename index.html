@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- Title Bar, Menu Bar, Calendar slide -->
+    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\window.css" />
+    
+    <!-- Icons library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script>require('electron-connect').client.create()</script>
+    
+    <!-- Pikaday style and theme -->
+    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\node_modules\pikaday\css\pikaday.css">
+    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\node_modules\pikaday\css\theme.css">
+    
+   
+</head>
+<body>
+    
+    <!-- Title Bar -->
+    <div id="title-bar">
+          <div id="title"></div>
+          <div id="title-bar-btns">
+               <button id="min-btn">&minus;</button>
+               <button id="close-btn">&#10005;</button>
+          </div>
+    </div>
+    
+    <!-- Menu Bar -->
+    <div id="menu-bar"> 
+        <a class="icon" href="#"><i class="fa fa-home"></i></a> 
+        <a class="icon" href="javascript:void(0)"><i class="fa fa-calendar"></i></a>
+        <a class="icon" href="#"><i class="fa fa-cog"></i></a> 
+        <a class="icon" href="#"><i class="fa fa-globe"></i></a>
+        <a class="icon" href="#"><i class="fa fa-trash"></i></a>     
+    </div>
+    
+    
+    <!-- Calendar -->
+    <div id="calendar-bar">
+        
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <input type="text" class="calendar" id="calendid">
+        
+        
+    </div>
+    
+
+    <div id="content">
+        
+        <div class="option" id="option0">
+            <h1>header</h1>
+            <p>acesta este un paraaa1</p>
+        </div>
+        
+        <div class="option" id="option1">
+            <h1>header</h1>
+            <p>acesta este un paraaa2</p>
+        </div>
+        
+        <div class="option" id="option2">
+            <h1>header</h1>
+            <p>acesta este un paraaa3</p>
+        </div>
+        
+        <div class="option" id="option3">
+            <h1>header</h1>
+            <p>acesta este un paraaa3</p>
+        </div>
+        
+        <div class="option" id="option4">
+            <h1>header</h1>
+            <p>acesta este un paraaa3</p>
+        </div>
+          
+
+    </div>
+
+    
+    <script src="D:\FMI\AN2\Sem2\MDS\ProjectJS\node_modules\pikaday\pikaday.js"></script>
+
+    <script src="window.js"></script>
+</body>
+</html>

@@ -31,6 +31,7 @@
   ],
   "homepage": "https://github.com/Synchronized-TV/electron-live-preview#readme",
   "dependencies": {
+      "mysql": "^2.5.4",
     "electron-debug": "^0.5.2",
     "electron-prebuilt": "^0.37.2",
     "electron-rebuild": "^1.1.3",

@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    
     <!-- Title Bar, Menu Bar, Calendar slide -->
     <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\window.css" />
     
     <!-- Icons library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Login -->
+    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\login.css">
+    
+    <!-- Timeline -->
+    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\timeline.css">
     
     <script>require('electron-connect').client.create()</script>
     
@@ -15,9 +22,38 @@
     <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\node_modules\pikaday\css\pikaday.css">
     <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\node_modules\pikaday\css\theme.css">
     
+    
+    
    
 </head>
 <body>
+    <!-- Login -->
+    <!--
+    <div id="loginform">
+        <form class="modal-content animate">
+            <div class="imgcontainer">
+              <span id="closeform" title="Cancel and quit">&times;</span>
+              <img src="" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="container">
+              <label></label>
+              <input class="username-box" type="text" placeholder="Username" name="uname" required>
+
+              <label></label>
+              <input class="password-box" type="password" placeholder="Password" name="psw" required>
+
+              <button id='login-btn' type="submit">Login</button>
+              <input type="checkbox" checked="checked"> Remember me
+            </div>
+
+            <div class="container">
+              <span class="psw"><a href="#"> Forgot password? </a></span>
+              <span class="signup"><a href="#"> Sign up </a></span>  
+            </div>
+        </form>        
+    </div>
+    -->
     
     <!-- Title Bar -->
     <div id="title-bar">
@@ -31,7 +67,7 @@
     <!-- Menu Bar -->
     <div id="menu-bar"> 
         <a class="icon" href="#"><i class="fa fa-home"></i></a> 
-        <a class="icon" href="javascript:void(0)"><i class="fa fa-calendar"></i></a>
+        <a class="icon calicon" href="javascript:void(0)"><i class="fa fa-calendar"></i></a>
         <a class="icon" href="#"><i class="fa fa-cog"></i></a> 
         <a class="icon" href="#"><i class="fa fa-globe"></i></a>
         <a class="icon" href="#"><i class="fa fa-trash"></i></a>     
@@ -51,13 +87,35 @@
     <div id="content">
         
         <div class="option" id="option0">
-            <h1>header</h1>
+            <h1>header</h1><h1>header</h1><h1>header</h1><h1>header</h1>
             <p>acesta este un paraaa1</p>
         </div>
         
-        <div class="option" id="option1">
+        <div class="option" id="option1"> <!-- Calendar -->
             <h1>header</h1>
-            <p>acesta este un paraaa2</p>
+            <p>acesta este un paraaa2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+            <div id="timeline-container">
+                <div class="page-header">
+                    <h1 id="timeline">Timeline</h1>
+                </div>
+                <ul class="timeline">
+                    
+                    
+                    <li class="timeline-inverted">
+                      <div class="timeline-badge"><i class="fa fa-gamepad"></i></div>
+                      <div class="timeline-panel">
+                        <div class="timeline-heading">
+                          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
+                        </div>
+                        <div class="timeline-body">
+                          <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga.</p>
+                        </div>
+                      </div>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
         </div>
         
         <div class="option" id="option2">
@@ -78,9 +136,12 @@
 
     </div>
 
-    
+    <!-- calendar -->
     <script src="D:\FMI\AN2\Sem2\MDS\ProjectJS\node_modules\pikaday\pikaday.js"></script>
-
+    
+    <!-- title, menu, calendar bars -->
     <script src="window.js"></script>
+    <!-- validates the login data, populates the diary with the entries -- works with the database -->
+    <script src="login-populate.js"></script>
 </body>
 </html>

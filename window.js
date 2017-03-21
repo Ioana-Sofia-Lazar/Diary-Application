@@ -1,13 +1,11 @@
 // opens calendar
 function openNav() {
     document.getElementById("calendar-bar").style.width = "250px";
-    document.getElementById("content").style.marginLeft = "250px";
 }
 
 // closes calendar
 function closeNav() {
     document.getElementById("calendar-bar").style.width = "0";
-    document.getElementById("content").style.marginLeft= "0";
 }
 
 // when we select a date in the calendar
@@ -39,7 +37,7 @@ function handleMenuClick(i) {
     // we find the div corresponding to the icon we clicked and we make it visible
     var name = "option" + i.toString();
     var option = document.getElementById(name);
-    option.style.display = "block";
+    option.style.display = "inline";
 }
 
 function addMenuListeners() {
@@ -47,8 +45,7 @@ function addMenuListeners() {
     for (let i = 0; i < icons.length; i++){
         icons[i].addEventListener("click", function() {handleMenuClick(i);});
         //icons[i].onclick = function() {handleMenuClick(i);}
-    }
-        
+    }      
 }
 
 function main() {
@@ -76,12 +73,11 @@ function main() {
     };
     
     // calendar slide push menu
-    document.getElementsByClassName("fa-calendar")[0].onclick = openNav;
+    document.getElementsByClassName("calicon")[0].onclick = openNav;
     
     // menu functionality
     addMenuListeners();
     
-   
 }
 
 main();

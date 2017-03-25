@@ -1,6 +1,9 @@
+const remote = require('remote');
+var ipc = require("electron").ipcRenderer;
+
 function loginValidate() {
-    var div = document.getElementById("loginform");
-    div.style.display = "none";
+    
+    ipc.send('show-main');
 }
 
 // if we close the login the application will quit (you can't use it without being logged in)
@@ -10,8 +13,7 @@ function closeForm(remote) {
 }
 
 function main() {
-    const remote = require('electron').remote; 
-    
+  
     var btn = document.getElementById("login-btn");
     btn.addEventListener('click', loginValidate);
     

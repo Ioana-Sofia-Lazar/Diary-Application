@@ -1,3 +1,5 @@
+var ipc = require("electron").ipcRenderer;
+
 // opens calendar
 function openNav() {
     document.getElementById("calendar-bar").style.width = "250px";
@@ -48,15 +50,10 @@ function addMenuListeners() {
     }      
 }
 
-function main() {
-    
-    const remote = require('electron').remote; 
-    
-    //creates the calendar and attaches it
-    createCalendar();
- 
-    // functionality for window close and minimize buttons  
-    function init() { 
+const remote = require('electron').remote;
+
+// functionality for window close and minimize buttons  
+function init() { 
     document.getElementById("min-btn").addEventListener("click", function (e) {
         const window = remote.getCurrentWindow();
         window.minimize(); 
@@ -65,7 +62,14 @@ function main() {
         const window = remote.getCurrentWindow();
             window.close();
         }); 
-    }; 
+}
+
+function main() {
+
+    // creates the calendar and attaches it
+    createCalendar();
+   
+    // window close and minimize buttons 
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {
             init(); 
@@ -78,6 +82,9 @@ function main() {
     // menu functionality
     addMenuListeners();
     
+    document.getElementById("add-timeline-entry").addEventListener("click", function() {
+        document.getElementById("add-entry-wrapper").style.display = "block";
+    });
 }
 
 main();

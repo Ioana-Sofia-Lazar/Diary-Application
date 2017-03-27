@@ -20,18 +20,6 @@ app.on('ready', function () {
 
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
-  // client can be created in the browser process.
-
-  // client.create(mainWindow);
-
-  // or with callback
-
-  // client.create(mainWindow, function () {
-  //   console.log('done');
-  // });
-
-  // or with options
-
-  // client.create(mainWindow, {sendBounds: false});
+  
 
 });

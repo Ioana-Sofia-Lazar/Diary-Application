@@ -1,4 +1,3 @@
-const remote = require('remote');
 var ipc = require("electron").ipcRenderer;
 
 function loginValidate() {

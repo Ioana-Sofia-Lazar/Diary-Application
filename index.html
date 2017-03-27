@@ -1,140 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    
+
     <!-- Title Bar, Menu Bar, Calendar slide -->
-    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\window.css" />
-    
+    <link rel="stylesheet" href="window.css" />
+
     <!-- Icons library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
     <!-- Login -->
-    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\login.css">
-    
+    <link rel="stylesheet" href="login.css">
+
     <!-- Timeline -->
-    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\timeline.css">
-    
-    <script>require('electron-connect').client.create()</script>
-    
+    <link rel="stylesheet" href="timeline.css">
+
+    <!-- User profile -->
+    <link rel="stylesheet" href="profile.css">
+
+    <script>
+        require('electron-connect').client.create()
+
+    </script>
+
     <!-- Pikaday style and theme -->
-    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\node_modules\pikaday\css\pikaday.css">
-    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\node_modules\pikaday\css\theme.css">
-    
-    
-    
-   
+    <link rel="stylesheet" href="node_modules/pikaday/css/pikaday.css">
+    <link rel="stylesheet" href="node_modules\pikaday\css\theme.css">
+
+
+
+
 </head>
+
 <body>
-    <!-- Login -->
-    <!--
-    <div id="loginform">
-        <form class="modal-content animate">
-            <div class="imgcontainer">
-              <span id="closeform" title="Cancel and quit">&times;</span>
-              <img src="" alt="Avatar" class="avatar">
-            </div>
 
-            <div class="container">
-              <label></label>
-              <input class="username-box" type="text" placeholder="Username" name="uname" required>
-
-              <label></label>
-              <input class="password-box" type="password" placeholder="Password" name="psw" required>
-
-              <button id='login-btn' type="submit">Login</button>
-              <input type="checkbox" checked="checked"> Remember me
-            </div>
-
-            <div class="container">
-              <span class="psw"><a href="#"> Forgot password? </a></span>
-              <span class="signup"><a href="#"> Sign up </a></span>  
-            </div>
-        </form>        
-    </div>
-    -->
-    
     <!-- Title Bar -->
     <div id="title-bar">
-          <div id="title"></div>
-          <div id="title-bar-btns">
-               <button id="min-btn">&minus;</button>
-               <button id="close-btn">&#10005;</button>
-          </div>
+        <div id="title"></div>
+        <div id="title-bar-btns">
+            <button id="min-btn">&minus;</button>
+            <button id="close-btn">&#10005;</button>
+        </div>
     </div>
-    
+
     <!-- Menu Bar -->
-    <div id="menu-bar"> 
-        <a class="icon" href="#"><i class="fa fa-home"></i></a> 
+    <div id="menu-bar">
+        <a class="icon" href="#"><i class="fa fa-user"></i></a>
         <a class="icon calicon" href="javascript:void(0)"><i class="fa fa-calendar"></i></a>
-        <a class="icon" href="#"><i class="fa fa-cog"></i></a> 
-        <a class="icon" href="#"><i class="fa fa-globe"></i></a>
-        <a class="icon" href="#"><i class="fa fa-trash"></i></a>     
+        <a class="icon" href="#"><i class="fa fa-cog"></i></a>
+        <a class="icon" href="#"><i class="fa fa-paint-brush"></i></a>
     </div>
-    
-    
+
+
     <!-- Calendar -->
     <div id="calendar-bar">
-        
+
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <input type="text" class="calendar" id="calendid">
-        
-        
+
     </div>
-    
+
+    <!-- pops up when we add/edit a timeline entry -->
+    <div id="add-entry-wrapper">
+        <div id="add-entry-container">
+            <form id="add-entry-form">
+                Title
+                <input id="entry-title" type="text"> Activity
+                <select name="activity-list">
+                          <option value="Eat">Eat</option>
+                          <option value="University/School">University/School</option>
+                          <option value="Study">Study</option>
+                          <option value="Work/Job">Work/Job</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Sleep">Sleep</option>
+                            <option value="Shower">Shower</option>
+                            <option value="Conversation">Conversation</option>
+                            <option  value="Other">Other</option>
+                        </select><br> Time
+                <input id="entry-time" type="text"> Location
+                <input id="entry-location" type="text"> Text
+                <textarea id="entry-text"></textarea>
+                <button type="button" id='save-entry'>Add</button>
+                <button type="button" id='cancel-entry'>Cancel</button>
+            </form>
+        </div>
+    </div>
+
 
     <div id="content">
-        
+
         <div class="option" id="option0">
-            <h1>header</h1><h1>header</h1><h1>header</h1><h1>header</h1>
-            <p>acesta este un paraaa1</p>
+            <div id="profile-wrapper">
+                <img id="profile-bckg" src="Design/small.jpg">
+                <div id="profile-container">
+                    <img id="profile-picture" src="Design/pic.jpg">
+                    <div id="profile-info">
+                        <p id="profile-name">JANE ANNE DOE</p>
+                        <p><i class="fa fa-briefcase"></i> Student</p>
+                        <p><i class="fa fa-map-marker"></i> Murica</p>
+                        <p><i class="fa fa-facebook-square"></i> facebook.com/myFb</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="option" id="option1"> <!-- Calendar -->
+
+        <div class="option" id="option1">
+            <!-- Calendar -->
+
             <h1>header</h1>
-            <p>acesta este un paraaa2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-            
+
             <div id="timeline-container">
-                <h1 id="timeline">Timeline</h1>
+                <h1>Timeline</h1>
+                <button id='add-timeline-entry'>Add new entry</button><br>
                 <ul class="timeline">
-                    <li class="timeline-inverted">
+
+                    <!-- Entry example
+                    <li class="timeline-inverted">   
                       <div class="timeline-badge"><i class="fa fa-gamepad"></i></div>
                       <div class="timeline-panel">
-                          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
-                          <div class="timeline-body">
-                              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. </p>
+                          <div class="timeline-entry-btns">
+                            <button class="timeline-entry-edit">...</button>
+                            <button class="timeline-entry-delete">&#10005;</button>
                           </div>
+                          <h4 class="timeline-title">Mussum ipsum cacilds</h4>
+                          <i class="fa fa-clock-o"></i><p class="timeline-time">  5:00</p> <br>
+                          <i class="fa fa-map-marker"></i><p class="timeline-location">  acasa</p>
+                          <hr>
+                          <p class="timeline-text">Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. </p>
                       </div>
-                    </li>            
+                    </li>   
+                    -->
+
                 </ul>
             </div>
         </div>
-        
+
         <div class="option" id="option2">
-            <h1>header</h1>
-            <p>acesta este un paraaa3</p>
+            <h1>Settings</h1>
+            <h3>Account</h3>
+            <p>Change password</p>
+            <p>Erase everything from my diary</p>
+            <p>Delete my account</p>
+            
+            <h3>Preferences</h3>
+            <p>First day of the week</p>
+            <input type="radio" name="first-day" value="Sunday" checked> Sunday<br>
+            <input type="radio" name="first-day" value="Monday"> Monday<br>
+            
+            <p><input type="checkbox" name="show-reminders" value="reminders"> Send me reminders when event is approaching</p>
         </div>
-        
+
         <div class="option" id="option3">
-            <h1>header</h1>
-            <p>acesta este un paraaa3</p>
+            <h1>Appearance</h1>
+            <h3>Select a theme</h3>
+            <div class="theme-container">
+                <img src="Design/theme.jpg"> <br>
+                <button class="theme-apply">Apply</button>
+            </div>
+            <div class="theme-container">
+                <img src="Design/theme.jpg"> <br>
+                <button class="theme-apply">Apply</button>
+            </div>
+            <div class="theme-container">
+                <img src="Design/theme.jpg"> <br>
+                <button class="theme-apply">Apply</button>
+            </div>
         </div>
-        
-        <div class="option" id="option4">
-            <h1>header</h1>
-            <p>acesta este un paraaa3</p>
-        </div>
-          
+
 
     </div>
 
     <!-- calendar -->
-    <script src="D:\FMI\AN2\Sem2\MDS\ProjectJS\node_modules\pikaday\pikaday.js"></script>
-    
+    <script src="node_modules\pikaday\pikaday.js"></script>
+
     <!-- title, menu, calendar bars -->
     <script src="window.js"></script>
-    <!-- validates the login data, populates the diary with the entries -- works with the database -->
-    <script src="login-populate.js"></script>
+
+    <!-- timeline functionality -->
+    <script src="timeline.js"></script>
+
 </body>
+
 </html>

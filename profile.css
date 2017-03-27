@@ -1,0 +1,42 @@
+/* Profile page */
+#profile-wrapper {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+#profile-bckg {
+    width: 100%;
+    opacity: 0.4;
+}
+
+#profile-container {
+    position: absolute;
+    width: 360px;
+    height: 580px;
+    margin: 0 auto;
+    top: 70px; left: 0; bottom: 0; right: 0;
+    border-radius: 5px;
+    background-color: aliceblue;
+    text-align: center;
+}
+
+#profile-picture {
+    max-height: 300px;
+    border-radius: inherit;
+}
+
+#profile-info {
+    color: dimgray;
+}
+
+#profile-name {
+    font-size: 1.5em;
+}
+
+/* Appearance page */
+.theme-container {
+    text-align: center;
+    display: inline-block;
+    margin: 20px;
+}

@@ -1,21 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="D:\FMI\AN2\Sem2\MDS\ProjectJS\login.css">
     
 </head>
     
-<body class="theme-light">
-    <input type=text class=calendar id="calendid">
+<body>
     
-    <script type="text/javascript">
-        const flatpickr = require('flatpickr');
-        var inp = document.getElementById("calendid");
-        new flatpickr(inp, {
-            inline: true
-         });
+   
+    <div class="container">
+
+      <p>
+        <label for="new-entry">Add Entry</label><input id="new-entry" type="text">
+        <input id="new-entry-time" type="time">
+        <button class="add">Add</button>
+      </p>
+
+      <h3>Journal Entries</h3>
+      <ul id="journal-entries">
+        <li><input type="time" value=07:10 readonly="readonly"/><label>Shower</label><input type="text"><button class="edit">Edit</button><button class="delete">Delete</button></li>
+        <li><input type="time" value=07:30 readonly="readonly"/><label>Make & Drink Smoothie</label><input type="text" value="Go Shopping"><button class="edit">Edit</button><button class="delete">Delete</button></li>
+      </ul>
+
+    </div>
+
+      
+    <script>
+        
+        var entryInput = document.getElementById("new-entry"); //new-entry
+        var entryInputTime = document.getElementById("new-entry-time"); //new-entry
+        var addButton = document.getElementsByTagName("button")[0]; //first button
+        var completedJournalEntries = document.getElementById("journal-entries"); //journal-entries
+
+        //New Task List Item
+        var createNewJournalElement = function(journalString, journalTime) {
+          //Create List Item
+          var listItem = document.createElement("li");
+          //input (time)
+          var timeInput = document.createElement("input"); // time
+          //label
+          var entryLabel = document.createElement("label");
+          //input (text)
+          var editInput = document.createElement("input"); // text
+          //button.edit
+          var editButton = document.createElement("button");
+          //button.delete
+          var deleteButton = document.createElement("button")
+
+          //Define the input types
+          editInput.type = "text";
+          timeInput.type = "time";
+          //Set attributes and class names for styling purposes
+          timeInput.setAttribute("readonly", "readonly");
+          timeInput.className = "entry-time"
+          if (typeof editButton.innerText === "undefined")  { //Cross-browser compatible code for the .innerText property
+            editButton.textContent = "Edit";
+          } else {
+            editButton.innerText = "Edit";
+          }
+          editButton.className = "edit"
+
+          if (typeof deleteButton.innerText === "undefined")  { //Cross-browser compatible code for the .innerText property
+              deleteButton.textContent = "Delete";
+            } else {
+              deleteButton.innerText = "Delete";
+            }
+          deleteButton.className = "delete";
+
+          // Record the values added in the Journal Entries section
+          entryLabel.innerText = journalString;
+          timeInput.value = journalTime;
+
+          //Each element needs appending
+          listItem.appendChild(timeInput);
+          listItem.appendChild(entryLabel);
+          listItem.appendChild(editInput);
+          listItem.appendChild(editButton);
+          listItem.appendChild(deleteButton);
+
+          return listItem;
+        };
+
+        //Add a new entry
+        var addEntry = function() {
+          if(entryInput.value == "" || entryInputTime.value == "") {
+            return;
+          } else {
+            console.log("Add entry...")
+            //Create a new list item with the text from #new-entry:
+            var listItem = createNewJournalElement(entryInput.value,entryInputTime.value);
+
+            //Bind the events to the elements created from createNewJournalElement
+            bindJournalEvents(listItem);
+
+            //Reset the entryInput & entryInputTime to a blank string
+            entryInput.value = "";
+            entryInputTime.value = "";
+
+            completedJournalEntries.appendChild(listItem);
+          }
+
+        };
+
+        //Edit an existing task
+        var editEntry = function() {
+          console.log("Edit entry...")
+
+          var listItem = this.parentNode;
+          var timeInput = listItem.querySelector("input[type=time]")
+          var editInput = listItem.querySelector("input[type=text]");
+          var label = listItem.querySelector("label")
+          var editButton = listItem.querySelector("button.edit");
+
+            //if the class of the parent is .editMode
+            if(listItem.classList.contains("editMode")) {
+              //Switch from .editMode
+              //prevent ability to change timeInput
+              timeInput.setAttribute("readonly", "readonly");
+              //label text become the input's value
+              label.innerText = editInput.value;
+              editButton.innerText = "Edit";
+            } else {
+              //Switch to .editMode
+              //allow ability to change timeInput
+              timeInput.removeAttribute("readonly");
+              //input value becomes the label's text
+              editInput.value = label.innerText;
+              editButton.innerText = "Save";
+            }
+
+            //Toggle .editMode on the parent
+            listItem.classList.toggle("editMode")
+        };
+
+        //Delete exisiting task
+        var deleteEntry = function() {
+          console.log("Delete entry...")
+          //Remove the parent list item from the ul
+          var listItem = this.parentNode;
+          var ul = listItem.parentNode;
+          ul.removeChild(listItem);
+        };
+
+        var bindJournalEvents = function(journalListItem) {
+          console.log("Bind list item events")
+          //select journalListItem's children
+          // var checkBox = journalListItem.querySelector("input[type=checkbox]");
+          var editButton = journalListItem.querySelector("button.edit");
+          var deleteButton = journalListItem.querySelector("button.delete");
+            //bind editEntry to edit button
+            editButton.onclick = editEntry;
+            //bind deleteEntry to delete button
+            deleteButton.onclick = deleteEntry;
+        };
+
+        //Set the click handler to the addEntry function
+        addButton.addEventListener("click", addEntry);
+
+        //Cycle over completedJournalEntries ul list items
+        for(var i = 0; i < completedJournalEntries.children.length; i++) {
+            //bind events to list item's children
+            bindJournalEvents(completedJournalEntries.children[i]);
+        };
 
     </script>
-
 </body>
 </html>
+

@@ -11,9 +11,6 @@
     <!-- Icons library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Login -->
-    <link rel="stylesheet" href="login.css">
-
     <!-- Timeline -->
     <link rel="stylesheet" href="timeline.css">
 
@@ -36,54 +33,58 @@
 
 <body>
 
-    <!-- Title Bar -->
-    <div id="title-bar">
-        <div id="title"></div>
-        <div id="title-bar-btns">
-            <button id="min-btn">&minus;</button>
-            <button id="close-btn">&#10005;</button>
-        </div>
-    </div>
-
     <!-- Menu Bar -->
     <div id="menu-bar">
-        <a class="icon" href="#"><i class="fa fa-user"></i></a>
-        <a class="icon calicon" href="javascript:void(0)"><i class="fa fa-calendar"></i></a>
-        <a class="icon" href="#"><i class="fa fa-cog"></i></a>
-        <a class="icon" href="#"><i class="fa fa-paint-brush"></i></a>
+        <div id="app-logo-div"><i id="app-logo" class="fa fa-ge"></i></div>
+        <a class="menu-icon icon" href="#"><i class="fa fa-user"></i></a>
+        <a class="menu-icon icon calicon" href="javascript:void(0)"><i class="fa fa-calendar"></i></a>
+        <a class="menu-icon icon" href="#"><i class="fa fa-cog"></i></a>
+        <a class="menu-icon icon" href="#"><i class="fa fa-paint-brush"></i></a>
     </div>
-
+    
+    <!-- Title Bar -->
+        <div id="title-bar">
+            <div id="title-bar-btns">
+                <button id="min-btn">&minus;</button>
+                <button id="close-btn">&#10005;</button>
+            </div>
+        </div>
 
     <!-- Calendar -->
     <div id="calendar-bar">
 
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <input type="text" class="calendar" id="calendid">
+        <button class="closebtn" onclick="closeNav()">&times;</button>
+        <input type="text" class="calendar" id="calendid" style="display: none;">
+        <div id="calendar-pikaday"></div>
 
     </div>
-
-    <!-- pops up when we add/edit a timeline entry -->
+    
+    
+    <!-- Form - pops up when we add/edit a timeline entry -->
     <div id="add-entry-wrapper">
         <div id="add-entry-container">
             <form id="add-entry-form">
                 Title
                 <input id="entry-title" type="text"> Activity
                 <select name="activity-list">
-                          <option value="Eat">Eat</option>
-                          <option value="University/School">University/School</option>
-                          <option value="Study">Study</option>
-                          <option value="Work/Job">Work/Job</option>
-                            <option value="Shopping">Shopping</option>
-                            <option value="Sleep">Sleep</option>
-                            <option value="Shower">Shower</option>
-                            <option value="Conversation">Conversation</option>
-                            <option  value="Other">Other</option>
-                        </select><br> Time
-                <input id="entry-time" type="text"> Location
-                <input id="entry-location" type="text"> Text
+                    <option value="Eat">Eat</option>
+                    <option value="University/School">University/School</option>
+                    <option value="Study">Study</option>
+                    <option value="Work/Job">Work/Job</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Sleep">Sleep</option>
+                    <option value="Shower">Shower</option>
+                    <option value="Conversation">Conversation</option>
+                    <option  value="Other">Other</option>
+                </select><br> 
+                Time
+                <input id="entry-time" type="text"> 
+                Location
+                <input id="entry-location" type="text"> 
+                Text
                 <textarea id="entry-text"></textarea>
-                <button type="button" id='save-entry'>Add</button>
-                <button type="button" id='cancel-entry'>Cancel</button>
+                <button class="general-button" type="button" id='save-entry'>Add</button>
+                <button class="general-button" type="button" id='cancel-entry'>Cancel</button>
             </form>
         </div>
     </div>
@@ -113,7 +114,7 @@
 
             <div id="timeline-container">
                 <h1>Timeline</h1>
-                <button id='add-timeline-entry'>Add new entry</button><br>
+                <button class="general-button" id='add-timeline-entry'>Add new entry</button><br>
                 <ul class="timeline">
 
                     <!-- Entry example
@@ -157,15 +158,15 @@
             <h3>Select a theme</h3>
             <div class="theme-container">
                 <img src="Design/theme.jpg"> <br>
-                <button class="theme-apply">Apply</button>
+                <button class="general-button theme-apply">Apply</button>
             </div>
             <div class="theme-container">
                 <img src="Design/theme.jpg"> <br>
-                <button class="theme-apply">Apply</button>
+                <button class="general-button theme-apply">Apply</button>
             </div>
             <div class="theme-container">
                 <img src="Design/theme.jpg"> <br>
-                <button class="theme-apply">Apply</button>
+                <button class="general-button theme-apply">Apply</button>
             </div>
         </div>
 

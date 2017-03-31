@@ -4,6 +4,8 @@
  * Each entry has a unique id.
  */
 
+var calendar; // pikaday calendar
+
 // the icon that will be displayed according to the selected activity
 function selectIcon(activity) {
     var icon = "fa-";
@@ -83,6 +85,12 @@ var timeline = document.getElementsByClassName("timeline")[0];
 var form = document.getElementById("add-entry-wrapper");
 var savebut = document.getElementById("save-entry"); // form button
 
+var newTitle = document.getElementById("entry-title");
+var newText = document.getElementById("entry-text");
+var newTime = document.getElementById("entry-time");
+var newLocation = document.getElementById("entry-location");
+var newActivity = "Other";
+
 // we insert the newly created entry so that we keep the cronologycal order
 function insertEntry(entry) {
     
@@ -121,7 +129,6 @@ function insertEntry(entry) {
 function removeEntry(searchid) {
     var i = 0;
     while(i < entries.length) {
-        //alert("i:" + i + " searchid:" + searchid + " id:" + entries[i].id);
         if(entries[i].id == searchid)
             break;
         i++;
@@ -133,13 +140,13 @@ function removeEntry(searchid) {
     
 }
 
-function Entry(newTitle, newActivity, newTime, newLocation, newText){
-    this.title = newTitle;
-    this.activity = newActivity;
-    this.icon = selectIcon(newActivity);
-    this.time = newTime;
-    this.location = newLocation;
-    this.text = newText;
+function Entry(_title, _activity, _time, _location, _text){
+    this.title = _title;
+    this.activity = _activity;
+    this.icon = selectIcon(_activity);
+    this.time = _time;
+    this.location = _location;
+    this.text = _text;
     this.id = 0;
     
     var self = this;
@@ -147,12 +154,6 @@ function Entry(newTitle, newActivity, newTime, newLocation, newText){
     this.saveEditEntry = function() {
         
         savebut.removeEventListener("click", self.saveEditEntry);
-
-        var newTitle = document.getElementById("entry-title");
-        var newText = document.getElementById("entry-text");
-        var newTime = document.getElementById("entry-time");
-        var newLocation = document.getElementById("entry-location");
-        var newActivity = "Eat";
         
         var li = new Entry(newTitle.value, newActivity, newTime.value, newLocation.value, newText.value);
         li.createEntry();
@@ -171,13 +172,6 @@ function Entry(newTitle, newActivity, newTime, newLocation, newText){
     };
     
     this.editEntry = function() {
-        
-    
-        var newTitle = document.getElementById("entry-title");
-        var newText = document.getElementById("entry-text");
-        var newTime = document.getElementById("entry-time");
-        var newLocation = document.getElementById("entry-location");
-        var newActivity;
         
         newTitle.value = this.title;
         newText.value = this.text;
@@ -270,12 +264,6 @@ Entry.len = 0; //static variable that will help assign unique id's to entries
 // creates the entry according to the form
 function saveAddEntry() {
     
-    var newTitle = document.getElementById("entry-title");
-    var newText = document.getElementById("entry-text");
-    var newTime = document.getElementById("entry-time");
-    var newLocation = document.getElementById("entry-location");
-    var newActivity = "Other";
-    
     var activityList = document.getElementsByName("activity-list")[0];  
     for (let i = 0; i < activityList.options.length; i++) {
         let opt = activityList.options[i];
@@ -300,12 +288,28 @@ function cancelAddEntry() {
     form.style.display = "none";
 }
 
-function main() {
+// creates and attaches calendar
+function createCalendar() {
+    var field = document.getElementById('calendar-pikaday');
+        calendar = new Pikaday({
+            firstDay: 1, // Monday is first day
+            theme: 'dark-theme',
+            onSelect: function(date) {
+                handleDatePick();
+            }
+        });
+    field.appendChild(calendar.el);
+}
+
+function main_timeline() {
+    
+    // creates the calendar and attaches it
+    createCalendar();
     
     document.getElementById("cancel-entry").addEventListener("click", cancelAddEntry);
     
-    savebut.addEventListener("click", saveAddEntry);
+    savebut.addEventListener("click", saveAddEntry);    
     
 }
 
-main();
+main_timeline();

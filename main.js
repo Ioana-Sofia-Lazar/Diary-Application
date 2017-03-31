@@ -5,53 +5,53 @@ require('electron-reload')(__dirname, {
 const {app, BrowserWindow} = electron;
 var ipc = require("electron").ipcMain;
 
-/*app.on('ready', () => {
+app.on('ready', () => {
      let loginWindow = new BrowserWindow({
-         width:350, 
+         width: 350, 
          height: 500, 
-         frame:false
+         frame: false,
+         resizable: false
      });
     loginWindow.loadURL(`file://${__dirname}/login.html`);
      loginWindow.webContents.openDevTools(); //shows Console
     let mainWindow = new BrowserWindow({
-        width:1200, 
+        width: 1200, 
         height: 700, 
         frame: false,
         show: false
     });
     mainWindow.loadURL(`file://${__dirname}/index.html`);
-     mainWindow.webContents.openDevTools(); //shows Console
+     //mainWindow.webContents.openDevTools(); //shows Console
     
     ipc.on('show-main', function() {
         loginWindow.hide();
         mainWindow.show();
     });
     
-})*/
+    // so the process doesn't remain open in the background
+    app.on('window-all-closed', app.quit);
+    app.on('before-quit', () => {
+            mainWindow.removeAllListeners('close');
+            mainWindow.close();
+    });
+});
 
-app.on('ready', () => {
+
+
+/*app.on('ready', () => {
     let mainWindow = new BrowserWindow({
-        width:1200, 
+        width: 1200, 
         height: 700, 
         frame: false
     });
     mainWindow.loadURL(`file://${__dirname}/index.html`);
      mainWindow.webContents.openDevTools(); //shows Console
     
-    let entryWindow = new BrowserWindow({
-        width:350, 
-        height: 350, 
-        frame: false,
-        show: false
+    // so the process doesn't remain open in the background
+    app.on('window-all-closed', app.quit);
+    app.on('before-quit', () => {
+            mainWindow.removeAllListeners('close');
+            mainWindow.close();
     });
-    /*entryWindow.loadURL(`file://${__dirname}/timelineEntry.html`);
-    entryWindow.webContents.openDevTools(); //shows Console
     
-    ipc.on('show-add-entry', function() {
-        entryWindow.show();
-    });
-    ipc.on('close-add-entry', function() {
-        entryWindow.hide();
-    });*/
-    
-})
+});*/

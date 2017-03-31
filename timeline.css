@@ -155,7 +155,9 @@
     position: absolute;
      top: 0px;
      right: 0px; 
+    
 }
+
 
 .timeline-entry-btns button{
     height: 32px;
@@ -164,4 +166,9 @@
      border: none;
      color: black;
      font-size: 16px; 
+    cursor: pointer;
+}
+
+#save-entry, #cancel-entry {
+    cursor: pointer;
 }

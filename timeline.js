@@ -306,6 +306,11 @@ function main_timeline() {
     // creates the calendar and attaches it
     createCalendar();
     
+    // shows the add entry form 
+    document.getElementById("add-timeline-entry").addEventListener("click", function() {
+        document.getElementById("add-entry-wrapper").style.display = "block";
+    });
+    
     document.getElementById("cancel-entry").addEventListener("click", cancelAddEntry);
     
     savebut.addEventListener("click", saveAddEntry);    

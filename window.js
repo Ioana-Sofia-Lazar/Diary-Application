@@ -65,11 +65,7 @@ function minCloseBtns() {
 function main_window() {
    
     // window close and minimize buttons 
-    document.onreadystatechange = function() {
-        if (document.readyState == "complete") {
-            minCloseBtns(); 
-        }
-    };
+    minCloseBtns(); 
     
     // calendar slide push menu
     document.getElementsByClassName("calicon")[0].onclick = openNav;
@@ -77,9 +73,7 @@ function main_window() {
     // menu functionality
     addMenuListeners();
     
-    document.getElementById("add-timeline-entry").addEventListener("click", function() {
-        document.getElementById("add-entry-wrapper").style.display = "block";
-    });
+    
 }
 
 main_window();

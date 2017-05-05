@@ -5,6 +5,8 @@ require('electron-reload')(__dirname, {
 const {app, BrowserWindow} = electron;
 var ipc = require("electron").ipcMain;
 
+var log = require('electron-log');
+
 app.on('ready', () => {
      let loginWindow = new BrowserWindow({
          width: 350, 
@@ -13,7 +15,7 @@ app.on('ready', () => {
          resizable: false
      });
     loginWindow.loadURL(`file://${__dirname}/login.html`);
-     loginWindow.webContents.openDevTools(); //shows Console
+    loginWindow.webContents.openDevTools(); //shows Console
     let mainWindow = new BrowserWindow({
         width: 1200, 
         height: 700, 
@@ -37,7 +39,6 @@ app.on('ready', () => {
 });
 
 
-
 /*app.on('ready', () => {
     let mainWindow = new BrowserWindow({
         width: 1200, 
@@ -45,7 +46,7 @@ app.on('ready', () => {
         frame: false
     });
     mainWindow.loadURL(`file://${__dirname}/index.html`);
-     mainWindow.webContents.openDevTools(); //shows Console
+    mainWindow.webContents.openDevTools(); //shows Console
     
     // so the process doesn't remain open in the background
     app.on('window-all-closed', app.quit);

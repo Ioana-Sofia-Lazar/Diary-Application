@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8_bin">
     <title>Document</title>
 
     <!-- Title Bar, Menu Bar, Calendar slide -->
@@ -18,16 +18,15 @@
     <link rel="stylesheet" href="profile.css">
 
     <script>
-        require('electron-connect').client.create()
-
+        require("electron-connect").client.create();
     </script>
 
     <!-- Pikaday style and theme -->
     <link rel="stylesheet" href="node_modules/pikaday/css/pikaday.css">
     <link rel="stylesheet" href="node_modules\pikaday\css\theme.css">
-
-
-
+    
+    <!-- Alternate CSS from Appearance menu tab -->
+    <link id="alternate-css" rel="stylesheet" href="">
 
 </head>
 
@@ -64,8 +63,9 @@
     <div id="add-entry-wrapper">
         <div id="add-entry-container">
             <form id="add-entry-form">
-                Title
-                <input id="entry-title" type="text"> Activity
+                <label for="title">Title</label>
+                <input id="entry-title" type="text"> <br> 
+                <label for="activity">Activity</label>
                 <select name="activity-list">
                     <option value="Eat">Eat</option>
                     <option value="University/School">University/School</option>
@@ -76,12 +76,12 @@
                     <option value="Shower">Shower</option>
                     <option value="Conversation">Conversation</option>
                     <option  value="Other">Other</option>
-                </select><br> 
-                Time
-                <input id="entry-time" type="text"> 
-                Location
-                <input id="entry-location" type="text"> 
-                Text
+                </select> <br> 
+                <label for="time">Time</label>
+                <input id="entry-time" type="text"> <br>
+                <label for="location">Location</label>
+                <input id="entry-location" type="text"> <br>
+                <label for="text">Text</label>
                 <textarea id="entry-text"></textarea>
                 <button class="general-button" type="button" id='save-entry'>Add</button>
                 <button class="general-button" type="button" id='cancel-entry'>Cancel</button>
@@ -172,6 +172,9 @@
 
 
     </div>
+    
+    <!-- DB     
+    <script src="db_connection.js"></script>-->
 
     <!-- calendar -->
     <script src="node_modules\pikaday\pikaday.js"></script>
@@ -181,6 +184,8 @@
 
     <!-- timeline functionality -->
     <script src="timeline.js"></script>
+    
+    <script src="appearance_settings.js"></script>
 
 </body>
 

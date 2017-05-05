@@ -1,9 +1,85 @@
 var ipc = require("electron").ipcRenderer;
 const remote = require('electron').remote;
+const logger = require('electron').remote.require('./logger');
 
-function loginValidate() {   
-    ipc.send('show-main');
+var connection; // connection to db
+var user; // current user
+
+function changeText(elemId, text) {
+    document.getElementById(elemId).innerHTML = text;
 }
+
+function loginValidate() {
+    var username = document.getElementById("username-login").value;
+    var passwd = document.getElementById("passwd-login").value;
+    
+    var query = "SELECT username, password FROM user WHERE username = '" + username + "';";
+    
+    connection.query(query, function(err, rows){
+        if(err) {
+            logger.log(err.stack);
+            return;
+        }
+        
+        if(!(rows.length > 0)) {// not valid username
+            changeText("login-error", "! Invalid username");
+        }
+        else 
+            if(passwd === rows[0].password) { 
+                //alert("Logged in with: " + rows[0].username + " " + rows[0].password);
+                ipc.send('show-main');
+            }
+            else {// username is valid but the password doesn't match
+                changeText("login-error", "! Wrong username and password combination");
+            }       
+        
+    });
+       
+}
+
+function signupValidate() {
+    var username = document.getElementById("username-signup").value;
+    var passwd = document.getElementById("passwd-signup").value;
+    var conf_passwd = document.getElementById("conf-passwd-signup").value;
+    
+    var query = "SELECT * FROM user WHERE username = '" + username + "';";
+    
+    connection.query(query, function(err, rows){
+        if(err) {
+            logger.log(err.stack);
+            return;
+        }
+        
+        if(rows.length > 0) {// not valid username (already exists)
+            changeText("signup-error", "! Username not available");
+        }
+        else 
+            if(!(passwd === conf_passwd)) {// passwords don't match 
+                changeText("signup-error", "! Passwords do not match");
+            }
+            else {// username is valid and passwords match -- insert new user
+                query = "INSERT INTO user (username, password) VALUES ('" + username + "', '" + passwd + "');";
+                
+                connection.query(query, function(err){
+                    if(err) {
+                        logger.log(err.stack);
+                        return;
+                    }
+                    else {// user added with success
+                        alert("Signed up successfully! You can login to your new account now.");
+                        // make login div visible
+                        var login_div = document.getElementById("login-div");
+                        var signup_div = document.getElementById("signup-div");
+                        signup_div.style.display = "none";
+                        login_div.style.display = "block";
+                    }
+                });
+            }       
+        
+    });
+       
+}
+
 
 // functionality to minimize and close form buttons
 function loginMinCloseBtns() { 
@@ -38,10 +114,32 @@ function switchLoginSignup() {
     });
 }
 
+// connects to DB
+function getConnection() {
+    var mysql = require("mysql");
+
+    connection = mysql.createConnection({
+        host:"localhost",
+        user:"root",
+        password:"root",
+        database:"diary_app"
+    });
+
+    connection.connect((err) => {
+        if(err) {alert(err.stack);
+            return logger.log(err.stack);
+        }  
+        logger.log("succesfull connection to db");
+    });
+}
+
 function login_main() {
     loginMinCloseBtns();
+    getConnection();
     
     document.getElementById("login-btn").addEventListener('click', loginValidate);
+    
+    document.getElementById("signup-btn").addEventListener('click', signupValidate);
     
     switchLoginSignup();
     

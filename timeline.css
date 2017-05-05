@@ -107,7 +107,29 @@
   color: inherit;
 }
 /* Entry */
-#add-timeline-entry {
+#add-entry-form {
+    
+}
+
+#add-entry-form input[type=text], 
+#add-entry-form input[type=time],
+#add-entry-form textarea, 
+#add-entry-form select{
+    width: 100%;
+    display: inline;
+    box-sizing: border-box;
+    border: 1px solid #BEBEBE;
+    padding: 12px 20px;
+    margin: 8px 0;
+    outline: none;  
+}
+
+#add-entry-form input[type=text]:focus, 
+#add-entry-form input[type=time]:focus,
+#add-entry-form textarea:focus, 
+#add-entry-form select:focus{
+    box-shadow: 0 0 8px #88D5E9;
+    border: 1px solid #88D5E9;
 }
 
 #add-entry-wrapper {

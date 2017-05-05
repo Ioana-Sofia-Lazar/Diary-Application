@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8_bin">
     <link rel="stylesheet" href="login.css">
 
 </head>
@@ -24,18 +24,20 @@
     <!-- Login -->
     <div id="login-div" class="login-box">   
         <h1>Login</h1>
-        <input type="text" placeholder="Username"/>
-        <input type="text" placeholder="Password"/>
+        <input type="text" placeholder="Username" id="username-login"/>
+        <input type="password" placeholder="Password" id="passwd-login"/>
         <button id="login-btn">Login</button>
+        <p id="login-error"></p>
         <p>Don't have an account yet?<span id="switch-to-signup"> Sign up</span></p>
     </div>
     
     <div id="signup-div" class="login-box">   
         <h1>Signup</h1>
-        <input type="text" placeholder="Username"/>
-        <input type="text" placeholder="Password"/>
-        <input type="text" placeholder="Confirm password"/>
+        <input type="text" placeholder="Username" id="username-signup"/>
+        <input type="password" placeholder="Password" id="passwd-signup"/>
+        <input type="password" placeholder="Confirm password" id="conf-passwd-signup"/>
         <button id="signup-btn">Sign up</button>
+        <p id="signup-error"></p>
         <p>Already have an account?<span id="switch-to-login"> Sign in</span></p>
     </div>
 

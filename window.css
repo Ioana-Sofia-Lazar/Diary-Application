@@ -107,13 +107,16 @@ body {
 }
 
 #menu-bar a:hover {
-    background-color: bisque;
-    color: #3B2639;
+    background-color: #A46A8A;
 }
 
 .menu-icon-active {
     background-color: pink;
     border-left: 6px solid white;
+}
+
+.menu-icon-active > i {
+    color: #804E69;
 }
 
 .option {
@@ -129,6 +132,11 @@ body {
 }
 
 #option1 {
+    overflow-y: auto;
+    padding: 25px;
+}
+
+#option3 { 
     overflow-y: auto;
     padding: 25px;
 }

@@ -304,7 +304,8 @@ function createCalendar() {
 function main_timeline() {
     
     // creates the calendar and attaches it
-    createCalendar();
+    createCalendar();alert("set"+currentUser.name + currentSettings.first_day);
+    //alert(settings);
     
     // shows the add entry form 
     document.getElementById("add-timeline-entry").addEventListener("click", function() {

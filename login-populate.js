@@ -1,9 +1,9 @@
 var ipc = require("electron").ipcRenderer;
 const remote = require('electron').remote;
-const logger = require('electron').remote.require('./logger');
+const logger = remote.require('./logger');
 
+var currentUser;
 var connection; // connection to db
-var user; // current user
 
 function changeText(elemId, text) {
     document.getElementById(elemId).innerHTML = text;
@@ -13,11 +13,11 @@ function loginValidate() {
     var username = document.getElementById("username-login").value;
     var passwd = document.getElementById("passwd-login").value;
     
-    var query = "SELECT username, password FROM user WHERE username = '" + username + "';";
+    var query = "SELECT id_user, username, password FROM user WHERE username = '" + username + "';";
     
     connection.query(query, function(err, rows){
         if(err) {
-            logger.log(err.stack);
+            console.log(err.stack);
             return;
         }
         
@@ -26,7 +26,8 @@ function loginValidate() {
         }
         else 
             if(passwd === rows[0].password) { 
-                //alert("Logged in with: " + rows[0].username + " " + rows[0].password);
+                //user = new User(rows[0].id_user, rows[0].username, rows[0].password);
+                currentUser = rows[0].username;
                 ipc.send('show-main');
             }
             else {// username is valid but the password doesn't match
@@ -46,7 +47,7 @@ function signupValidate() {
     
     connection.query(query, function(err, rows){
         if(err) {
-            logger.log(err.stack);
+            console.log(err.stack);
             return;
         }
         
@@ -62,7 +63,7 @@ function signupValidate() {
                 
                 connection.query(query, function(err){
                     if(err) {
-                        logger.log(err.stack);
+                        console.log(err.stack);
                         return;
                     }
                     else {// user added with success
@@ -79,7 +80,6 @@ function signupValidate() {
     });
        
 }
-
 
 // functionality to minimize and close form buttons
 function loginMinCloseBtns() { 
@@ -127,9 +127,9 @@ function getConnection() {
 
     connection.connect((err) => {
         if(err) {alert(err.stack);
-            return logger.log(err.stack);
+            return console.log(err.stack);
         }  
-        logger.log("succesfull connection to db");
+        console.log("succesfull connection to db");
     });
 }
 
@@ -144,5 +144,9 @@ function login_main() {
     switchLoginSignup();
     
 }
-
 login_main();
+
+var Global = {
+    user: 'da'
+};    
+module.exports = Global;

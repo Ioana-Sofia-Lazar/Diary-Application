@@ -15,7 +15,7 @@ app.on('ready', () => {
          resizable: false
      });
     loginWindow.loadURL(`file://${__dirname}/login.html`);
-    loginWindow.webContents.openDevTools(); //shows Console
+    //loginWindow.webContents.openDevTools(); //shows Console
     let mainWindow = new BrowserWindow({
         width: 1200, 
         height: 700, 
@@ -23,7 +23,7 @@ app.on('ready', () => {
         show: false
     });
     mainWindow.loadURL(`file://${__dirname}/index.html`);
-     //mainWindow.webContents.openDevTools(); //shows Console
+     mainWindow.webContents.openDevTools(); //shows Console
     
     ipc.on('show-main', function() {
         loginWindow.hide();
